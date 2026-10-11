@@ -54,6 +54,17 @@ interface RepoItem {
   previewType?: "salon" | "bot" | "blog" | "backend" | "code";
 }
 
+interface GitHubStats {
+  followers: number;
+  following: number;
+  publicRepos: number;
+  totalStars: number;
+  memberSince: number;
+  bio: string | null;
+  avatarUrl: string | null;
+  htmlUrl: string;
+}
+
 export default function PortfolioPage() {
   // Preloader state
   const [loading, setLoading] = useState(true);
@@ -61,6 +72,7 @@ export default function PortfolioPage() {
 
   // States
   const [repos, setRepos] = useState<RepoItem[]>([]);
+  const [githubStats, setGithubStats] = useState<GitHubStats | null>(null);
   const [activeTab, setActiveTab] = useState<"all" | "web" | "python" | "api">("all");
   const [activeAccordion, setActiveAccordion] = useState<number | null>(0);
   const [istTime, setIstTime] = useState("");
@@ -134,6 +146,9 @@ export default function PortfolioPage() {
         const data = await res.json();
         if (data.repos) {
           setRepos(data.repos);
+        }
+        if (data.stats) {
+          setGithubStats(data.stats);
         }
       } catch (err) {
         console.error("Failed to load GitHub repos:", err);
@@ -453,8 +468,66 @@ export default function PortfolioPage() {
       </div>
 
       {/* =========================================================================
+          GITHUB LIVE STATS BANNER
+      ========================================================================= */}
+      {githubStats && (
+        <section className="py-14 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
+          <div className="rounded-2xl border border-[#00f0ff]/20 bg-[#080d15] p-8 shadow-xl shadow-[#00f0ff]/5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#00f0ff]/10 border border-[#00f0ff]/30 flex items-center justify-center">
+                  <GithubIcon className="w-5 h-5 text-[#00f0ff]" />
+                </div>
+                <div>
+                  <div className="font-mono text-xs uppercase tracking-widest text-[#00f0ff]">Live GitHub Activity</div>
+                  <div className="font-bold text-lg text-white">@mdnawazishnaushad</div>
+                </div>
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/30 font-mono text-[10px] text-[#10b981] uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-ping" />
+                  Live Data
+                </span>
+              </div>
+              <a
+                href={githubStats.htmlUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#00f0ff]/40 text-[#00f0ff] font-mono text-xs uppercase tracking-wider hover:bg-[#00f0ff] hover:text-black transition-all"
+              >
+                View Profile <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {[
+                { label: "Public Repos", value: githubStats.publicRepos, icon: "📁" },
+                { label: "Total Stars", value: githubStats.totalStars, icon: "⭐" },
+                { label: "Followers", value: githubStats.followers, icon: "👥" },
+                { label: "Member Since", value: githubStats.memberSince, icon: "📅" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="p-5 rounded-xl border border-white/10 bg-white/[0.02] text-center hover:border-[#00f0ff]/40 transition-all"
+                >
+                  <div className="text-2xl mb-1">{stat.icon}</div>
+                  <div className="text-3xl font-black text-white font-mono">{stat.value}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {githubStats.bio && (
+              <p className="mt-6 text-slate-400 text-sm font-sans italic border-t border-white/10 pt-4">
+                &ldquo;{githubStats.bio}&rdquo;
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* =========================================================================
           SERVICES / CAPABILITIES (ACCORDION WITH CODE PREVIEWS)
       ========================================================================= */}
+
       <section id="capabilities" className="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
         <div className="mb-14 flex flex-col md:flex-row md:items-end justify-between border-b-2 border-white pb-6">
           <div>
