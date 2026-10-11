@@ -87,12 +87,12 @@ export async function GET() {
 
   const fallbackStats = {
     followers: 0,
-    following: 0,
+    following: 6,
     publicRepos: 2,
     totalStars: 1,
     memberSince: 2023,
-    bio: null,
-    avatarUrl: null,
+    bio: "Ethical Hacker | Ethical Hacking & Programming | Web development | Telegram Bot Development | Penetration Tester | Security Researcher | Bug Hunter.",
+    avatarUrl: "https://avatars.githubusercontent.com/u/143341859?v=4",
     htmlUrl: `https://github.com/${username}`,
   };
 
