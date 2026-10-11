@@ -632,182 +632,83 @@ export default function PortfolioPage() {
           ))}
         </div>
 
-        {/* Project Cards Grid with Browser Chrome Mockups */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Project Cards Grid - Clean, Professional Developer Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredRepos.map((repo) => (
             <div
               key={repo.id}
-              className="group rounded-2xl border border-white/10 bg-[#080d15] hover:border-[#00f0ff]/50 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between"
+              className="group rounded-2xl border border-white/10 bg-[#080d15] hover:border-[#00f0ff]/50 transition-all duration-300 p-6 flex flex-col justify-between shadow-xl hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] relative overflow-hidden"
             >
-              {/* Browser Mockup Top */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00f0ff]/5 rounded-bl-full pointer-events-none group-hover:bg-[#00f0ff]/10 transition-colors" />
+
               <div>
-                <div className="h-8 bg-black/60 border-b border-white/10 px-3.5 flex items-center justify-between text-xs font-mono text-slate-500">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  </div>
-                  <span className="text-[10px] text-white/40 truncate max-w-[240px]">
-                    {repo.homepage || repo.url}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="px-2.5 py-1 rounded bg-[#00f0ff]/10 text-[#00f0ff] font-mono text-[11px] uppercase tracking-wider font-bold border border-[#00f0ff]/20">
+                    {repo.language || "TypeScript"}
                   </span>
-                  <div className="w-6" />
-                </div>
-
-                {/* Simulated Screen Preview */}
-                <div className="p-6 bg-[#0a0f19] border-b border-white/10 relative overflow-hidden">
-                  <div className="absolute top-[-20px] right-[-20px] w-36 h-36 bg-[#00f0ff]/10 blur-3xl rounded-full" />
-
-                  {repo.previewType === "salon" ? (
-                    <div className="space-y-3 relative z-10">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-[#00f0ff]/20 text-[#00f0ff] flex items-center justify-center">
-                            <Scissors className="w-4 h-4" />
-                          </div>
-                          <span className="font-bold text-xs tracking-wider uppercase">Luxe Salon App</span>
-                        </div>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-ping" /> Live Booking
-                        </span>
-                      </div>
-                      <div className="bg-white/[0.04] border border-white/10 rounded-xl p-3 flex justify-between items-center text-xs">
-                        <div>
-                          <div className="font-semibold text-white/90">Signature Haircut &amp; Beard</div>
-                          <div className="text-[11px] text-white/50">⏱ 45 Mins · Today, 4:00 PM</div>
-                        </div>
-                        <span className="text-[#00f0ff] font-mono font-bold text-sm">$45</span>
-                      </div>
-                    </div>
-                  ) : repo.previewType === "bot" ? (
-                    <div className="space-y-3 relative z-10 font-mono text-xs">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <Activity className="w-4 h-4 text-[#10b981]" />
-                          <span className="font-bold text-xs uppercase tracking-wider text-white">Py_Monitor_Bot</span>
-                        </div>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30">
-                          UPTIME 99.98%
-                        </span>
-                      </div>
-                      <div className="bg-black/50 border border-[#10b981]/20 rounded-xl p-3 text-[11px] space-y-1">
-                        <div className="flex justify-between text-slate-400">
-                          <span>ENDPOINT</span>
-                          <span>LATENCY</span>
-                          <span>STATUS</span>
-                        </div>
-                        <div className="flex justify-between text-white/80">
-                          <span className="text-[#00f0ff]">api.railway.app</span>
-                          <span>38ms</span>
-                          <span className="text-[#10b981] font-bold">200 OK</span>
-                        </div>
-                      </div>
-                    </div>
-                  ) : repo.previewType === "blog" ? (
-                    <div className="space-y-3 relative z-10 font-sans">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
-                            <BookOpen className="w-4 h-4" />
-                          </div>
-                          <span className="font-bold text-xs uppercase tracking-wider">Blogspot</span>
-                        </div>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                          Published
-                        </span>
-                      </div>
-                      <div className="bg-white/[0.04] border border-white/10 rounded-xl p-3 text-xs">
-                        <div className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">
-                          Featured Article
-                        </div>
-                        <div className="font-bold text-white/90">Architecting High-Performance Web Experiences</div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="space-y-3 relative z-10 font-mono text-xs">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <Server className="w-4 h-4 text-rose-400" />
-                          <span className="font-bold text-xs uppercase tracking-wider text-white">Backend Arch</span>
-                        </div>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                          REST Ready
-                        </span>
-                      </div>
-                      <div className="bg-black/50 border border-rose-500/20 rounded-xl p-3 text-[11px] flex justify-between items-center text-slate-300">
-                        <span>🗄 PostgreSQL</span>
-                        <span>→</span>
-                        <span className="text-[#10b981]">🛡 JWT Auth</span>
-                        <span>→</span>
-                        <span className="text-[#00f0ff]">⚡ Fast Edge</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Project Details */}
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <span className="text-[11px] font-mono uppercase text-[#00f0ff] tracking-wider block font-bold">
-                        [ {repo.role || "Full Stack Lead"} ]
-                      </span>
-                      <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-[#00f0ff] transition-colors mt-1">
-                        {repo.name}
-                      </h3>
-                    </div>
-                    <span className="text-xs font-mono text-slate-500">{repo.year || "2025"}</span>
-                  </div>
-
-                  <p className="text-xs md:text-sm text-slate-400 line-clamp-3 leading-relaxed mb-6">
-                    {repo.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {repo.topics?.slice(0, 4).map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-0.5 rounded bg-white/[0.04] text-slate-300 font-mono text-[10px] uppercase border border-white/10"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Card Footer with Links */}
-              <div className="px-6 py-4 bg-black/40 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-500">
-                <div className="flex items-center gap-3">
-                  <span className="flex items-center gap-1 text-slate-400">
-                    <Star className="w-3.5 h-3.5 text-amber-400" /> {repo.stars}
-                  </span>
-                  <span className="flex items-center gap-1 text-slate-400">
-                    <GitFork className="w-3.5 h-3.5" /> {repo.forks}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <a
-                    href={repo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-[#00f0ff] hover:text-black transition-all"
-                    title="GitHub Repository"
-                  >
-                    <GithubIcon className="w-3.5 h-3.5" />
-                  </a>
-                  {repo.homepage && (
+                  <div className="flex items-center gap-2">
                     <a
-                      href={repo.homepage}
+                      href={repo.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-[#00f0ff] hover:text-black transition-all"
-                      title="Live Website"
+                      title="GitHub Repository"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <GithubIcon className="w-3.5 h-3.5" />
                     </a>
-                  )}
+                    {repo.homepage && (
+                      <a
+                        href={repo.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-[#00f0ff] hover:text-black transition-all"
+                        title="Live Demo"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
+
+                <h3 className="text-xl font-bold uppercase tracking-tight text-white group-hover:text-[#00f0ff] transition-colors mb-2">
+                  {repo.name}
+                </h3>
+
+                <p className="text-xs md:text-sm text-slate-400 line-clamp-3 leading-relaxed mb-6 font-sans">
+                  {repo.description}
+                </p>
+
+                {repo.topics && repo.topics.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {repo.topics.slice(0, 4).map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-0.5 rounded bg-white/[0.03] text-slate-400 font-mono text-[10px] uppercase border border-white/5"
+                      >
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-500">
+                <div className="flex items-center gap-3">
+                  <span className="flex items-center gap-1 text-slate-400">
+                    <Star className="w-3.5 h-3.5 text-amber-400" /> {repo.stars || 0}
+                  </span>
+                  <span className="flex items-center gap-1 text-slate-400">
+                    <GitFork className="w-3.5 h-3.5 text-slate-400" /> {repo.forks || 0}
+                  </span>
+                </div>
+                <a
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#00f0ff] hover:underline flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                >
+                  View Repo <ArrowRight className="w-3 h-3" />
+                </a>
               </div>
             </div>
           ))}
