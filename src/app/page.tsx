@@ -468,34 +468,56 @@ export default function PortfolioPage() {
       </div>
 
       {/* =========================================================================
-          GITHUB LIVE STATS BANNER
+          GITHUB LIVE PROFILE & STATS
       ========================================================================= */}
       {githubStats && (
         <section className="py-14 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
-          <div className="rounded-2xl border border-[#00f0ff]/20 bg-[#080d15] p-8 shadow-xl shadow-[#00f0ff]/5">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+          <div className="rounded-2xl border border-[#00f0ff]/20 bg-[#080d15] p-6 md:p-8 shadow-xl shadow-[#00f0ff]/5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/10">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#00f0ff]/10 border border-[#00f0ff]/30 flex items-center justify-center">
-                  <GithubIcon className="w-5 h-5 text-[#00f0ff]" />
-                </div>
+                {githubStats.avatarUrl ? (
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#00f0ff] shrink-0 shadow-lg shadow-[#00f0ff]/20">
+                    <img
+                      src={githubStats.avatarUrl}
+                      alt="GitHub Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-14 h-14 rounded-full bg-[#00f0ff]/10 border border-[#00f0ff]/30 flex items-center justify-center shrink-0">
+                    <GithubIcon className="w-6 h-6 text-[#00f0ff]" />
+                  </div>
+                )}
                 <div>
-                  <div className="font-mono text-xs uppercase tracking-widest text-[#00f0ff]">Live GitHub Activity</div>
-                  <div className="font-bold text-lg text-white">@mdnawazishnaushad</div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-xl text-white">Md Nawazish Naushad</span>
+                    <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#10b981]/10 border border-[#10b981]/30 font-mono text-[10px] text-[#10b981] uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-ping" />
+                      Live
+                    </span>
+                  </div>
+                  <div className="font-mono text-xs text-[#00f0ff]">@mdnawazishnaushad</div>
                 </div>
-                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/30 font-mono text-[10px] text-[#10b981] uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-ping" />
-                  Live Data
-                </span>
               </div>
+
               <a
                 href={githubStats.htmlUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#00f0ff]/40 text-[#00f0ff] font-mono text-xs uppercase tracking-wider hover:bg-[#00f0ff] hover:text-black transition-all"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#00f0ff]/50 bg-[#00f0ff]/10 text-[#00f0ff] font-mono text-xs uppercase tracking-wider hover:bg-[#00f0ff] hover:text-black transition-all"
               >
-                View Profile <ArrowRight className="w-3 h-3" />
+                <GithubIcon className="w-4 h-4" />
+                <span>Visit GitHub Profile</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
+
+            {githubStats.bio && (
+              <p className="text-slate-300 text-xs md:text-sm font-mono leading-relaxed mb-6 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                <span className="text-[#00f0ff] mr-2">bio:</span>
+                {githubStats.bio}
+              </p>
+            )}
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
@@ -514,12 +536,6 @@ export default function PortfolioPage() {
                 </div>
               ))}
             </div>
-
-            {githubStats.bio && (
-              <p className="mt-6 text-slate-400 text-sm font-sans italic border-t border-white/10 pt-4">
-                &ldquo;{githubStats.bio}&rdquo;
-              </p>
-            )}
           </div>
         </section>
       )}
@@ -912,12 +928,31 @@ export default function PortfolioPage() {
                 <span>DEV_ID // NAWAZISH</span>
                 <span className="text-[#10b981]">● ACTIVE</span>
               </div>
-              <div className="my-auto text-center py-6">
-                <div className="w-24 h-24 rounded-full bg-[#00f0ff]/10 border-2 border-[#00f0ff] mx-auto mb-4 flex items-center justify-center font-black text-3xl font-mono text-[#00f0ff]">
-                  NM
-                </div>
+              <div className="my-auto text-center py-4">
+                {githubStats?.avatarUrl ? (
+                  <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-2 border-[#00f0ff] shadow-lg shadow-[#00f0ff]/20">
+                    <img
+                      src={githubStats.avatarUrl}
+                      alt="MD Nawazish Naushad"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-24 h-24 rounded-full bg-[#00f0ff]/10 border-2 border-[#00f0ff] mx-auto mb-4 flex items-center justify-center font-black text-3xl font-mono text-[#00f0ff]">
+                    NM
+                  </div>
+                )}
                 <h4 className="text-xl font-bold uppercase tracking-tight">MD Nawazish Naushad</h4>
                 <p className="text-xs font-mono text-slate-400 mt-1">Full Stack Developer</p>
+                <a
+                  href="https://github.com/mdnawazishnaushad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/15 bg-white/5 hover:border-[#00f0ff] hover:text-[#00f0ff] font-mono text-[11px] text-slate-300 transition-all"
+                >
+                  <GithubIcon className="w-3.5 h-3.5 text-[#00f0ff]" />
+                  <span>@mdnawazishnaushad</span>
+                </a>
               </div>
               <div className="border-t border-white/10 pt-3 text-[11px] font-mono text-slate-400 flex justify-between">
                 <span>LOCATION: INDIA</span>
